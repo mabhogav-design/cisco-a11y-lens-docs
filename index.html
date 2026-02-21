@@ -411,7 +411,17 @@
     .exp-card .exp-icon {
       position: absolute; top: 44px; right: 40px;
       font-size: 24px; color: rgba(255,255,255,0.1);
+      transition: color 300ms cubic-bezier(0.0, 0.0, 0.2, 1.0),
+                  transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1.0);
+      transform-origin: center center;
     }
+    .exp-card:hover .exp-icon {
+      color: rgba(0, 188, 242, 0.35);
+    }
+    .exp-card:nth-child(1):hover .exp-icon { transform: translate(3px, -3px); }
+    .exp-card:nth-child(2):hover .exp-icon { transform: scale(1.18); }
+    .exp-card:nth-child(3):hover .exp-icon { transform: rotate(180deg); }
+    .exp-card:nth-child(4):hover .exp-icon { transform: scale(1.15) rotate(20deg); }
     .exp-benefits {
       display: flex; gap: 32px; margin-top: 48px;
       justify-content: center;
