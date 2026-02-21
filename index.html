@@ -135,7 +135,7 @@
        ========================================= */
     .hero {
       min-height: 100vh;
-      background: var(--hero-bg);
+      background: var(--hero-bg) url('hero-bg.png') center bottom / cover no-repeat;
       display: flex; align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
     }
@@ -143,8 +143,7 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0, 122, 163, 0.12) 0%, transparent 100%),
-        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0, 188, 242, 0.06) 0%, transparent 100%);
+        radial-gradient(ellipse 50% 40% at 50% 0%, rgba(0, 122, 163, 0.10) 0%, transparent 100%);
       pointer-events: none;
     }
     .hero-inner { position: relative; z-index: 2; max-width: 680px; padding: 0 24px; }
