@@ -337,9 +337,13 @@
     .tech-item {
       border: 1px solid var(--gray-200); border-radius: var(--radius-md);
       padding: 24px 16px; text-align: center;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative; cursor: default;
     }
-    .tech-item:hover { border-color: var(--webex-blue); }
+    .tech-item:hover {
+      border-color: var(--webex-blue);
+      box-shadow: 0 4px 16px rgba(0, 122, 163, 0.08);
+    }
     .tech-item .tech-icon {
       font-size: 24px; color: var(--webex-blue);
       margin-bottom: 12px; display: block;
@@ -351,6 +355,30 @@
     }
     .tech-item .value {
       font-size: 14px; font-weight: 600; color: var(--gray-900);
+    }
+    .tech-tip {
+      position: absolute; left: 50%; bottom: 100%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--gray-900); color: var(--white);
+      font-size: 13px; font-weight: 400; line-height: 1.45;
+      padding: 10px 14px; border-radius: 8px;
+      width: max-content; max-width: 220px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 200ms ease, transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1.0);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .tech-tip::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--gray-900);
+    }
+    .tech-item:hover .tech-tip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-6px);
     }
 
     /* =========================================
@@ -384,7 +412,7 @@
     }
     .footer-logo {
       height: 48px; width: auto; margin-bottom: 24px;
-      opacity: 0.85;
+      mix-blend-mode: lighten;
     }
     footer strong { color: var(--white); font-weight: 600; }
     footer code {
@@ -538,41 +566,49 @@
       </div>
       <div class="tech-grid">
         <div class="tech-item">
+          <span class="tech-tip">How the plugin talks to the AI server &mdash; a secure channel for sending design data back and forth</span>
           <i class="icon icon-endpoint_24 tech-icon"></i>
           <div class="label">Protocol</div>
           <div class="value">MCP over Streamable HTTP</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">The engine running behind the scenes that processes your design frames and returns suggestions</span>
           <i class="icon icon-tools_24 tech-icon"></i>
           <div class="label">Runtime</div>
           <div class="value">FastMCP (Python)</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">Digital ID badges that verify every request is legitimate &mdash; no unauthorized access</span>
           <i class="icon icon-lock_24 tech-icon"></i>
           <div class="label">Auth</div>
           <div class="value">JWT / JWKS (RS256)</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">Cisco's own AI that understands accessibility rules and generates smart recommendations</span>
           <i class="icon icon-bot_24 tech-icon"></i>
           <div class="label">AI Engine</div>
           <div class="value">Circuit LLM</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">The panel inside Figma where you select frames, set intent, and review results</span>
           <i class="icon icon-browser_24 tech-icon"></i>
           <div class="label">Frontend</div>
           <div class="value">Figma Plugin API</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">The shared language the plugin and server use to understand each other's messages</span>
           <i class="icon icon-cloud_24 tech-icon"></i>
           <div class="label">Transport</div>
           <div class="value">JSON-RPC 2.0</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">The global rulebook for making digital products usable by everyone, including people with disabilities</span>
           <i class="icon icon-certified_24 tech-icon"></i>
           <div class="label">Standard</div>
           <div class="value">WCAG 2.1 AA</div>
         </div>
         <div class="tech-item">
+          <span class="tech-tip">Your design data stays within Cisco's secure network &mdash; nothing leaves the building</span>
           <i class="icon icon-secure_24 tech-icon"></i>
           <div class="label">Data Class</div>
           <div class="value">Cisco Confidential</div>
