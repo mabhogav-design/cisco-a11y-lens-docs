@@ -196,24 +196,33 @@
       will-change: transform;
       transform: translateY(0);
     }
-    .showcase-text {
-      position: absolute; bottom: 56px; left: 48px;
-      z-index: 2;
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 600ms cubic-bezier(0.0, 0.0, 0.2, 1.0),
-                  transform 600ms cubic-bezier(0.0, 0.0, 0.2, 1.0);
+    .showcase-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 0 32px;
     }
-    .showcase-text.visible { opacity: 1; transform: translateY(0); }
-    .showcase-text .eyebrow {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gray-500);
-      margin-bottom: 8px;
+    .showcase-statement {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 700ms cubic-bezier(0.0, 0.0, 0.2, 1.0),
+                  transform 700ms cubic-bezier(0.0, 0.0, 0.2, 1.0);
     }
-    .showcase-text h2 {
-      font-size: 20px; font-weight: 600; color: var(--gray-800);
-      letter-spacing: -0.2px;
+    .showcase-statement.visible { opacity: 1; transform: translateY(0); }
+    .showcase-statement h2 {
+      font-size: 56px; font-weight: 700; color: var(--white);
+      letter-spacing: -2px; line-height: 1.1;
+      text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
     }
-    .showcase-text h2 span { font-weight: 400; color: var(--gray-500); }
+    .showcase-statement h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--webex-teal), var(--webex-blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .showcase-statement p {
+      font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.6);
+      margin-top: 16px; letter-spacing: 0.02em;
+    }
 
     /* =========================================
        PROBLEM
@@ -404,8 +413,7 @@
       .container { padding: 0 20px; }
       section { padding: 64px 0; }
       .showcase { height: 60vh; min-height: 360px; }
-      .showcase-text { left: 24px; bottom: 40px; }
-      .showcase-text h2 { font-size: 17px; }
+      .showcase-statement h2 { font-size: 32px; letter-spacing: -1px; }
     }
   </style>
 </head>
@@ -447,9 +455,11 @@
   <!-- PRODUCT SHOWCASE -->
   <div class="showcase" role="img" aria-label="3D glassmorphism visualization of the A11y Lens plugin interface showing stepper flow, risk checkboxes, and Start Analysis button">
     <div class="showcase-bg" id="showcaseBg"></div>
-    <div class="showcase-text" id="showcaseText">
-      <div class="eyebrow">Figma Plugin</div>
-      <h2>Scope &rarr; Intent &rarr; Risks &rarr; Result <span>&mdash; 4-step stepper</span></h2>
+    <div class="showcase-overlay">
+      <div class="showcase-statement" id="showcaseStatement">
+        <h2>Design it <em>accessible</em><br>from the start</h2>
+        <p>Scope &rarr; Intent &rarr; Risks &rarr; Result</p>
+      </div>
     </div>
   </div>
 
@@ -635,7 +645,7 @@
         if (e.isIntersecting) e.target.classList.add('visible');
       });
     }, { threshold: 0.2 });
-    document.querySelectorAll('.stat-card, .showcase-text').forEach(function(el) {
+    document.querySelectorAll('.stat-card, .showcase-statement').forEach(function(el) {
       observer.observe(el);
     });
   </script>
