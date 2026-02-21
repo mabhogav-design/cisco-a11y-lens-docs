@@ -195,18 +195,12 @@
       overflow: hidden;
     }
     .showcase-bg {
-      position: absolute; inset: -40px;
+      position: absolute;
+      top: -80px; left: 0; right: 0; bottom: -80px;
       background: url('product-shot-2x.jpg') center center / cover no-repeat;
-      background-attachment: fixed;
       will-change: transform;
-      transition: transform 0.1s linear;
     }
-    .showcase-vignette {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        linear-gradient(180deg, var(--hero-bg) 0%, transparent 4%),
-        linear-gradient(0deg, var(--white) 0%, transparent 6%);
-    }
+    .showcase-vignette { display: none; }
     .showcase-text {
       position: absolute; bottom: 56px; left: 48px;
       z-index: 2;
