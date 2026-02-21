@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@momentum-ui/icons@8.33.0/css/momentum-ui-icons.min.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -53,8 +54,11 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Momentum icon overrides for our layout */
+    .icon { line-height: 1; }
+
     /* =========================================
-       NAV — Webex style: clean, fixed, minimal
+       NAV
        ========================================= */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -72,7 +76,7 @@
       display: flex; align-items: center; gap: 10px;
       text-decoration: none; color: var(--gray-900);
     }
-    .nav-brand svg { flex-shrink: 0; }
+    .nav-brand .icon { color: var(--webex-blue); font-size: 22px; }
     .nav-brand span {
       font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
     }
@@ -90,7 +94,6 @@
     .container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
     section { padding: 96px 0; }
 
-    /* Section header pattern */
     .section-eyebrow {
       font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--webex-blue);
@@ -106,7 +109,6 @@
     }
     .section-header { margin-bottom: 56px; }
 
-    /* Buttons — Webex pill style */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 13px 28px; border-radius: var(--radius-pill);
@@ -115,9 +117,7 @@
       transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
     }
     .btn:active { transform: scale(0.97); }
-    .btn-primary {
-      background: var(--webex-blue); color: var(--white);
-    }
+    .btn-primary { background: var(--webex-blue); color: var(--white); }
     .btn-primary:hover {
       background: var(--webex-blue-hover);
       box-shadow: 0 4px 16px rgba(0, 122, 163, 0.3);
@@ -126,12 +126,10 @@
       background: transparent; color: var(--gray-900);
       box-shadow: inset 0 0 0 1.5px var(--gray-300);
     }
-    .btn-outline:hover {
-      box-shadow: inset 0 0 0 1.5px var(--gray-800);
-    }
+    .btn-outline:hover { box-shadow: inset 0 0 0 1.5px var(--gray-800); }
 
     /* =========================================
-       HERO — Dark panel, Webex-style
+       HERO
        ========================================= */
     .hero {
       min-height: 100vh;
@@ -158,15 +156,12 @@
       letter-spacing: 0.05em; text-transform: uppercase;
       margin-bottom: 36px;
     }
-    .hero-badge .pulse {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green); flex-shrink: 0;
-      animation: pulse 2s ease-in-out infinite;
-    }
+    .hero-badge .icon { font-size: 14px; color: var(--green); }
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
+    .hero-badge .icon { animation: pulse 2s ease-in-out infinite; }
     .hero h1 {
       font-size: 52px; font-weight: 700; line-height: 1.1;
       letter-spacing: -1.5px; color: var(--white); margin-bottom: 20px;
@@ -186,7 +181,7 @@
     .hero .btn-outline:hover { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.5); }
 
     /* =========================================
-       PRODUCT SHOWCASE — full-bleed parallax, image-first
+       PRODUCT SHOWCASE
        ========================================= */
     .showcase {
       position: relative;
@@ -201,7 +196,6 @@
       will-change: transform;
       transform: translateY(0);
     }
-    .showcase-vignette { display: none; }
     .showcase-text {
       position: absolute; bottom: 56px; left: 48px;
       z-index: 2;
@@ -219,12 +213,10 @@
       font-size: 20px; font-weight: 600; color: var(--gray-800);
       letter-spacing: -0.2px;
     }
-    .showcase-text h2 span {
-      font-weight: 400; color: var(--gray-500);
-    }
+    .showcase-text h2 span { font-weight: 400; color: var(--gray-500); }
 
     /* =========================================
-       PROBLEM — Dark contrast section with glowing stats
+       PROBLEM
        ========================================= */
     .problem-section {
       background: var(--gray-900);
@@ -264,8 +256,9 @@
     .stat-icon {
       width: 40px; height: 40px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px; font-size: 18px;
+      margin-bottom: 24px;
     }
+    .stat-icon .icon { font-size: 20px; }
     .stat-icon.red { background: rgba(212, 55, 28, 0.12); color: #F06449; }
     .stat-icon.orange { background: rgba(194, 81, 0, 0.12); color: #F2994A; }
     .stat-icon.blue { background: rgba(0, 122, 163, 0.12); color: var(--webex-teal); }
@@ -282,7 +275,7 @@
     }
 
     /* =========================================
-       HOW IT WORKS — Light gray bg
+       HOW IT WORKS
        ========================================= */
     .how-section { background: var(--gray-50); }
     .flow-row {
@@ -304,8 +297,9 @@
     .flow-step-icon {
       width: 48px; height: 48px; border-radius: var(--radius-sm);
       display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 20px; font-size: 20px;
+      margin-bottom: 20px;
     }
+    .flow-step-icon .icon { font-size: 24px; }
     .flow-step-icon.figma { background: var(--webex-blue-light); color: var(--webex-blue); }
     .flow-step-icon.proxy { background: var(--gray-100); color: var(--gray-700); }
     .flow-step-icon.ai { background: var(--green-light); color: var(--green); }
@@ -315,16 +309,17 @@
     }
     .flow-step p { font-size: 14px; font-weight: 400; color: var(--gray-600); line-height: 1.55; }
     .flow-arrow {
-      display: flex; align-items: center; padding: 0 8px;
-      color: var(--gray-300); font-size: 24px;
+      display: flex; align-items: center; padding: 0 4px;
+      color: var(--gray-300);
     }
+    .flow-arrow .icon { font-size: 20px; }
     .flow-note {
       text-align: center; margin-top: 32px;
       font-size: 13px; font-weight: 400; color: var(--gray-500);
     }
 
     /* =========================================
-       TECH STACK — White bg
+       TECH STACK
        ========================================= */
     .tech-section { background: var(--white); }
     .tech-grid {
@@ -336,6 +331,10 @@
       transition: border-color 0.2s;
     }
     .tech-item:hover { border-color: var(--webex-blue); }
+    .tech-item .tech-icon {
+      font-size: 24px; color: var(--webex-blue);
+      margin-bottom: 12px; display: block;
+    }
     .tech-item .label {
       font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
       text-transform: uppercase; color: var(--gray-500);
@@ -346,7 +345,7 @@
     }
 
     /* =========================================
-       WHAT'S NEXT — minimal teaser list
+       WHAT'S NEXT
        ========================================= */
     .next-section { background: var(--gray-50); }
     .next-list {
@@ -354,7 +353,7 @@
       list-style: none;
     }
     .next-list li {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 10px;
       background: var(--white); border: 1px solid var(--gray-200);
       border-radius: var(--radius-pill); padding: 10px 20px;
       font-size: 14px; font-weight: 500; color: var(--gray-700);
@@ -364,10 +363,7 @@
       border-color: var(--webex-blue);
       box-shadow: 0 2px 12px rgba(0, 122, 163, 0.08);
     }
-    .next-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--webex-teal); flex-shrink: 0;
-    }
+    .next-list .icon { font-size: 16px; color: var(--webex-teal); }
 
     /* =========================================
        FOOTER
@@ -408,7 +404,6 @@
       .container { padding: 0 20px; }
       section { padding: 64px 0; }
       .showcase { height: 60vh; min-height: 360px; }
-      .showcase-bg { background-attachment: scroll; }
       .showcase-text { left: 24px; bottom: 40px; }
       .showcase-text h2 { font-size: 17px; }
     }
@@ -419,10 +414,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="#" class="nav-brand">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="11" stroke="#007AA3" stroke-width="2"/>
-        <path d="M8 12.5L11 15.5L16 9.5" stroke="#007AA3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <i class="icon icon-accessibility_24"></i>
       <span>Cisco A11y Lens</span>
     </a>
     <div class="nav-links">
@@ -437,7 +429,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-badge">
-        <span class="pulse"></span>
+        <i class="icon icon-check-circle_20"></i>
         MCP Connector Approved
       </div>
       <h1>Accessibility<br><em>Intelligence</em><br>for Design</h1>
@@ -452,10 +444,9 @@
     </div>
   </section>
 
-  <!-- PRODUCT SHOWCASE — full-bleed parallax -->
+  <!-- PRODUCT SHOWCASE -->
   <div class="showcase" role="img" aria-label="3D glassmorphism visualization of the A11y Lens plugin interface showing stepper flow, risk checkboxes, and Start Analysis button">
     <div class="showcase-bg" id="showcaseBg"></div>
-    <div class="showcase-vignette"></div>
     <div class="showcase-text" id="showcaseText">
       <div class="eyebrow">Figma Plugin</div>
       <h2>Scope &rarr; Intent &rarr; Risks &rarr; Result <span>&mdash; 4-step stepper</span></h2>
@@ -474,23 +465,17 @@
       </div>
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-icon red">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v8m0 4v.01M3 17h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
+          <div class="stat-icon red"><i class="icon icon-warning_24"></i></div>
           <div class="stat-number">$150K&ndash;$300K</div>
           <div class="stat-desc">Average accessibility lawsuit settlement in the United States</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon orange">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16h3V8H4v8zm5 0h3V4H9v12zm5 0h3v-5h-3v5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          <div class="stat-icon orange"><i class="icon icon-analysis_24"></i></div>
           <div class="stat-number">4,605</div>
           <div class="stat-desc">ADA digital accessibility lawsuits filed in US federal courts in 2023</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon blue">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 18L10 4l8 14H2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 10v3m0 2v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
+          <div class="stat-icon blue"><i class="icon icon-alert_24"></i></div>
           <div class="stat-number">10&times;</div>
           <div class="stat-desc">The cost multiplier of retrofitting accessibility versus designing it right</div>
         </div>
@@ -510,25 +495,19 @@
       </div>
       <div class="flow-row">
         <div class="flow-step">
-          <div class="flow-step-icon figma">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
-          </div>
+          <div class="flow-step-icon figma"><i class="icon icon-browser_24"></i></div>
           <h3>Figma Plugin</h3>
           <p>Designer selects a UI frame and describes what the user is trying to accomplish</p>
         </div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow"><i class="icon icon-arrow-right_20"></i></div>
         <div class="flow-step">
-          <div class="flow-step-icon proxy">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="6" width="16" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="10" r="1" fill="currentColor"/><circle cx="10" cy="10" r="1" fill="currentColor"/><circle cx="14" cy="10" r="1" fill="currentColor"/></svg>
-          </div>
+          <div class="flow-step-icon proxy"><i class="icon icon-shield_24"></i></div>
           <h3>MCP Connector</h3>
           <p>Request routed through an authenticated, JWT-secured proxy server</p>
         </div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow"><i class="icon icon-arrow-right_20"></i></div>
         <div class="flow-step">
-          <div class="flow-step-icon ai">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 10L10 18L2 10L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-          </div>
+          <div class="flow-step-icon ai"><i class="icon icon-bot_24"></i></div>
           <h3>Circuit AI</h3>
           <p>LLM analyzes the frame and generates WCAG 2.1 AA accessibility annotations</p>
         </div>
@@ -549,34 +528,42 @@
       </div>
       <div class="tech-grid">
         <div class="tech-item">
+          <i class="icon icon-endpoint_24 tech-icon"></i>
           <div class="label">Protocol</div>
           <div class="value">MCP over Streamable HTTP</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-tools_24 tech-icon"></i>
           <div class="label">Runtime</div>
           <div class="value">FastMCP (Python)</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-lock_24 tech-icon"></i>
           <div class="label">Auth</div>
           <div class="value">JWT / JWKS (RS256)</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-bot_24 tech-icon"></i>
           <div class="label">AI Engine</div>
           <div class="value">Circuit LLM</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-browser_24 tech-icon"></i>
           <div class="label">Frontend</div>
           <div class="value">Figma Plugin API</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-cloud_24 tech-icon"></i>
           <div class="label">Transport</div>
           <div class="value">JSON-RPC 2.0</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-certified_24 tech-icon"></i>
           <div class="label">Standard</div>
           <div class="value">WCAG 2.1 AA</div>
         </div>
         <div class="tech-item">
+          <i class="icon icon-secure_24 tech-icon"></i>
           <div class="label">Data Class</div>
           <div class="value">Cisco Confidential</div>
         </div>
@@ -595,11 +582,11 @@
         </p>
       </div>
       <ul class="next-list">
-        <li><span class="next-dot"></span>Color contrast analysis</li>
-        <li><span class="next-dot"></span>Screen reader flow preview</li>
-        <li><span class="next-dot"></span>Edit suggestions before applying</li>
-        <li><span class="next-dot"></span>Batch analysis across frames</li>
-        <li><span class="next-dot"></span>Momentum design system integration</li>
+        <li><i class="icon icon-pen_24"></i>Color contrast analysis</li>
+        <li><i class="icon icon-screen-toggle_24"></i>Screen reader flow preview</li>
+        <li><i class="icon icon-edit_24"></i>Edit suggestions before applying</li>
+        <li><i class="icon icon-layout-equal-dual_24"></i>Batch analysis across frames</li>
+        <li><i class="icon icon-tools_24"></i>Momentum design system integration</li>
       </ul>
     </div>
   </section>
