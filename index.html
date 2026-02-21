@@ -186,58 +186,47 @@
     .hero .btn-outline:hover { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.5); }
 
     /* =========================================
-       PRODUCT SHOWCASE — full-bleed parallax with frosted overlay
+       PRODUCT SHOWCASE — full-bleed parallax, image-first
        ========================================= */
     .showcase {
       position: relative;
-      height: 80vh;
-      min-height: 480px;
+      height: 90vh;
+      min-height: 520px;
       overflow: hidden;
     }
     .showcase-bg {
-      position: absolute; inset: 0;
+      position: absolute; inset: -40px;
       background: url('product-shot-2x.jpg') center center / cover no-repeat;
       background-attachment: fixed;
+      will-change: transform;
+      transition: transform 0.1s linear;
     }
-    .showcase-overlay {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      background: linear-gradient(
-        180deg,
-        rgba(18, 18, 18, 0.7) 0%,
-        rgba(18, 18, 18, 0.15) 35%,
-        rgba(18, 18, 18, 0.15) 65%,
-        rgba(255, 255, 255, 0.5) 100%
-      );
+    .showcase-vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(180deg, var(--hero-bg) 0%, transparent 18%),
+        linear-gradient(0deg, var(--white) 0%, transparent 14%),
+        radial-gradient(ellipse 70% 50% at 50% 50%, transparent 40%, rgba(0,0,0,0.15) 100%);
     }
-    .showcase-content {
-      position: relative; z-index: 2;
-      max-width: 600px; padding: 0 32px;
+    .showcase-text {
+      position: absolute; bottom: 56px; left: 48px;
+      z-index: 2;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 600ms cubic-bezier(0.0, 0.0, 0.2, 1.0),
+                  transform 600ms cubic-bezier(0.0, 0.0, 0.2, 1.0);
     }
-    .showcase-glass {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: var(--radius-lg);
-      padding: 40px 48px;
-    }
-    .showcase-glass .eyebrow {
+    .showcase-text.visible { opacity: 1; transform: translateY(0); }
+    .showcase-text .eyebrow {
       font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--webex-teal);
-      margin-bottom: 16px;
+      text-transform: uppercase; color: var(--gray-500);
+      margin-bottom: 8px;
     }
-    .showcase-glass h2 {
-      font-size: 28px; font-weight: 700; color: var(--white);
-      letter-spacing: -0.3px; line-height: 1.25; margin-bottom: 12px;
+    .showcase-text h2 {
+      font-size: 20px; font-weight: 600; color: var(--gray-800);
+      letter-spacing: -0.2px;
     }
-    .showcase-glass p {
-      font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-    }
-    @supports not (backdrop-filter: blur(1px)) {
-      .showcase-glass { background: rgba(30, 30, 30, 0.85); }
+    .showcase-text h2 span {
+      font-weight: 400; color: var(--gray-500);
     }
 
     /* =========================================
@@ -422,8 +411,8 @@
       section { padding: 64px 0; }
       .showcase { height: 60vh; min-height: 360px; }
       .showcase-bg { background-attachment: scroll; }
-      .showcase-glass { padding: 28px 24px; }
-      .showcase-glass h2 { font-size: 22px; }
+      .showcase-text { left: 24px; bottom: 40px; }
+      .showcase-text h2 { font-size: 17px; }
     }
   </style>
 </head>
@@ -467,15 +456,11 @@
 
   <!-- PRODUCT SHOWCASE — full-bleed parallax -->
   <div class="showcase" role="img" aria-label="3D glassmorphism visualization of the A11y Lens plugin interface showing stepper flow, risk checkboxes, and Start Analysis button">
-    <div class="showcase-bg"></div>
-    <div class="showcase-overlay">
-      <div class="showcase-content">
-        <div class="showcase-glass">
-          <div class="eyebrow">Figma Plugin</div>
-          <h2>4-step stepper flow</h2>
-          <p>Scope &rarr; Intent &rarr; Risks &rarr; Result. Select a frame, describe the user task, choose compliance areas, and review AI-generated annotations.</p>
-        </div>
-      </div>
+    <div class="showcase-bg" id="showcaseBg"></div>
+    <div class="showcase-vignette"></div>
+    <div class="showcase-text" id="showcaseText">
+      <div class="eyebrow">Figma Plugin</div>
+      <h2>Scope &rarr; Intent &rarr; Risks &rarr; Result <span>&mdash; 4-step stepper</span></h2>
     </div>
   </div>
 
@@ -635,16 +620,38 @@
 
   <script>
     var nav = document.getElementById('nav');
+    var showcaseBg = document.getElementById('showcaseBg');
+    var showcase = document.querySelector('.showcase');
+
+    var ticking = false;
     window.addEventListener('scroll', function() {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          var y = window.scrollY;
+          nav.classList.toggle('scrolled', y > 10);
+
+          if (showcase) {
+            var rect = showcase.getBoundingClientRect();
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+              var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+              var shift = (progress - 0.5) * 60;
+              showcaseBg.style.transform = 'scale(1.08) translateY(' + shift + 'px)';
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
 
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); }
+        if (e.isIntersecting) e.target.classList.add('visible');
       });
     }, { threshold: 0.2 });
-    document.querySelectorAll('.stat-card').forEach(function(el) { observer.observe(el); });
+    document.querySelectorAll('.stat-card, .showcase-text').forEach(function(el) {
+      observer.observe(el);
+    });
   </script>
 
 </body>
