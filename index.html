@@ -186,32 +186,59 @@
     .hero .btn-outline:hover { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.5); }
 
     /* =========================================
-       PRODUCT SHOWCASE — bridges dark hero to light content
+       PRODUCT SHOWCASE — full-bleed parallax with frosted overlay
        ========================================= */
     .showcase {
-      padding: 0 0 80px;
-      background: linear-gradient(180deg, var(--hero-bg) 0%, #D8DAE5 32%, #E8EAF2 100%);
-      text-align: center;
       position: relative;
+      height: 80vh;
+      min-height: 480px;
+      overflow: hidden;
     }
-    .showcase-img-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 32px;
-      transform: translateY(-60px);
+    .showcase-bg {
+      position: absolute; inset: 0;
+      background: url('product-shot.png') center center / cover no-repeat;
+      background-attachment: fixed;
     }
-    .showcase-img-wrap img {
-      width: 100%;
-      height: auto;
+    .showcase-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background: linear-gradient(
+        180deg,
+        rgba(18, 18, 18, 0.7) 0%,
+        rgba(18, 18, 18, 0.15) 35%,
+        rgba(18, 18, 18, 0.15) 65%,
+        rgba(255, 255, 255, 0.5) 100%
+      );
+    }
+    .showcase-content {
+      position: relative; z-index: 2;
+      max-width: 600px; padding: 0 32px;
+    }
+    .showcase-glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: var(--radius-lg);
-      filter: drop-shadow(0 24px 64px rgba(0, 0, 0, 0.18))
-              drop-shadow(0 8px 20px rgba(0, 0, 0, 0.10));
+      padding: 40px 48px;
     }
-    .showcase-caption {
-      font-size: 14px; font-weight: 400; color: var(--gray-600);
-      margin-top: -20px;
+    .showcase-glass .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--webex-teal);
+      margin-bottom: 16px;
     }
-    .showcase-caption strong { font-weight: 600; color: var(--gray-800); }
+    .showcase-glass h2 {
+      font-size: 28px; font-weight: 700; color: var(--white);
+      letter-spacing: -0.3px; line-height: 1.25; margin-bottom: 12px;
+    }
+    .showcase-glass p {
+      font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    @supports not (backdrop-filter: blur(1px)) {
+      .showcase-glass { background: rgba(30, 30, 30, 0.85); }
+    }
 
     /* =========================================
        PROBLEM — Light section
@@ -374,8 +401,10 @@
       .tech-grid { grid-template-columns: 1fr; }
       .container { padding: 0 20px; }
       section { padding: 64px 0; }
-      .showcase-img-wrap { transform: translateY(-32px); padding: 0 16px; }
-      .showcase { padding-bottom: 48px; }
+      .showcase { height: 60vh; min-height: 360px; }
+      .showcase-bg { background-attachment: scroll; }
+      .showcase-glass { padding: 28px 24px; }
+      .showcase-glass h2 { font-size: 22px; }
     }
   </style>
 </head>
@@ -417,16 +446,18 @@
     </div>
   </section>
 
-  <!-- PRODUCT SHOWCASE -->
-  <div class="showcase">
-    <div class="showcase-img-wrap">
-      <img src="product-shot.png"
-           alt="3D visualization of Webex A11y Lens plugin showing the stepper flow, risk checkboxes for Focus Order and Keyboard Interactions, and the Start Analysis button"
-           width="1024" height="571" loading="eager">
+  <!-- PRODUCT SHOWCASE — full-bleed parallax -->
+  <div class="showcase" role="img" aria-label="3D glassmorphism visualization of the A11y Lens plugin interface showing stepper flow, risk checkboxes, and Start Analysis button">
+    <div class="showcase-bg"></div>
+    <div class="showcase-overlay">
+      <div class="showcase-content">
+        <div class="showcase-glass">
+          <div class="eyebrow">Figma Plugin</div>
+          <h2>4-step stepper flow</h2>
+          <p>Scope &rarr; Intent &rarr; Risks &rarr; Result. Select a frame, describe the user task, choose compliance areas, and review AI-generated annotations.</p>
+        </div>
+      </div>
     </div>
-    <p class="showcase-caption">
-      <strong>4-step stepper flow</strong> &mdash; Scope, Intent, Risks, Result
-    </p>
   </div>
 
   <!-- PROBLEM -->
