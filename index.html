@@ -47,6 +47,12 @@
     .mdi-display-bold::before { content: '\f46c'; }
     .mdi-edit-bold::before { content: '\f4c6'; }
     .mdi-video-layout-equal-dual-bold::before { content: '\fc76'; }
+    .mdi-mouse-cursor-bold::before { content: '\f80a'; }
+    .mdi-text-bold::before { content: '\fbee'; }
+    .mdi-sparkle-bold::before { content: '\fb41'; }
+    .mdi-scan-bold::before { content: '\fa45'; }
+    .mdi-hand-pointer-bold::before { content: '\f663'; }
+    .mdi-dashboard-bold::before { content: '\f408'; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -368,6 +374,63 @@
     }
 
     /* =========================================
+       DESIGNER EXPERIENCE
+       ========================================= */
+    .experience-section { background: var(--gray-900); }
+    .experience-section .section-eyebrow { color: var(--webex-teal); }
+    .experience-section .section-title { color: var(--white); }
+    .experience-section .section-subtitle { color: rgba(255,255,255,0.5); }
+    .experience-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .exp-card {
+      padding: 48px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .exp-card:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
+    .exp-card:nth-last-child(-n+2) { border-bottom: none; }
+    .exp-card:hover { background: rgba(255,255,255,0.03); }
+    .exp-step {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(0, 188, 242, 0.12); color: var(--webex-teal);
+      font-size: 13px; font-weight: 500; margin-bottom: 20px;
+    }
+    .exp-card h3 {
+      font-size: 20px; font-weight: 400; color: var(--white);
+      margin-bottom: 10px; letter-spacing: -0.3px;
+    }
+    .exp-card p {
+      font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .exp-card .exp-icon {
+      position: absolute; top: 44px; right: 40px;
+      font-size: 24px; color: rgba(255,255,255,0.1);
+    }
+    .exp-benefits {
+      display: flex; gap: 32px; margin-top: 48px;
+      justify-content: center;
+    }
+    .exp-benefit {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.45);
+    }
+    .exp-benefit .mdi { font-size: 18px; color: var(--webex-teal); }
+    @media (max-width: 768px) {
+      .experience-grid { grid-template-columns: 1fr; }
+      .exp-card:nth-child(odd) { border-right: none; }
+      .exp-card:nth-last-child(2) { border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .exp-card { padding: 36px 28px; }
+      .exp-card .exp-icon { display: none; }
+      .exp-benefits { flex-direction: column; gap: 16px; align-items: center; }
+    }
+
+    /* =========================================
        TECH STACK
        ========================================= */
     .tech-section { background: var(--white); }
@@ -497,6 +560,7 @@
     <div class="nav-links">
       <a href="#problem">Problem</a>
       <a href="#solution">How it works</a>
+      <a href="#experience">For designers</a>
       <a href="#tech">Architecture</a>
       <a href="#roadmap">What's next</a>
     </div>
@@ -592,6 +656,50 @@
         </div>
       </div>
       <p class="flow-note">Zero API keys on the client. Enterprise-grade JWT/JWKS authentication throughout.</p>
+    </div>
+  </section>
+
+  <!-- DESIGNER EXPERIENCE -->
+  <section class="experience-section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">For Designers</div>
+        <h2 class="section-title">Your workflow, supercharged</h2>
+        <p class="section-subtitle">
+          No context switching. No separate audit tools. Everything happens inside Figma, right where you design.
+        </p>
+      </div>
+      <div class="experience-grid">
+        <div class="exp-card">
+          <div class="exp-step">1</div>
+          <i class="mdi mdi-mouse-cursor-bold exp-icon"></i>
+          <h3>Select any frame</h3>
+          <p>Pick a component, screen, or flow in your Figma file. Works with auto-layout, variants, and nested instances.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-step">2</div>
+          <i class="mdi mdi-text-bold exp-icon"></i>
+          <h3>Describe the user intent</h3>
+          <p>Tell the tool what the user is trying to do &mdash; &ldquo;submit a form,&rdquo; &ldquo;navigate settings,&rdquo; &ldquo;review a dashboard.&rdquo; Context makes AI smarter.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-step">3</div>
+          <i class="mdi mdi-scan-bold exp-icon"></i>
+          <h3>Flag known risks</h3>
+          <p>Check off concerns you already suspect &mdash; color contrast, keyboard navigation, screen reader flow &mdash; so the analysis is focused, not generic.</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-step">4</div>
+          <i class="mdi mdi-sparkle-bold exp-icon"></i>
+          <h3>Get actionable specs</h3>
+          <p>AI returns WCAG-aligned annotations: accessible names, roles, states, contrast ratios, focus order &mdash; ready to paste into your design or hand off to eng.</p>
+        </div>
+      </div>
+      <div class="exp-benefits">
+        <div class="exp-benefit"><i class="mdi mdi-dashboard-bold"></i>Under 30 seconds per frame</div>
+        <div class="exp-benefit"><i class="mdi mdi-hand-pointer-bold"></i>Zero terminal or code needed</div>
+        <div class="exp-benefit"><i class="mdi mdi-check-circle-bold"></i>WCAG 2.1 AA compliant output</div>
+      </div>
     </div>
   </section>
 
