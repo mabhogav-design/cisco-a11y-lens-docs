@@ -236,9 +236,11 @@
     }
     .showcase-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.8);
+      opacity: 0;
       display: flex; align-items: center; justify-content: center;
       text-align: center; padding: 0 32px;
+      will-change: opacity;
     }
     .showcase-statement {
       opacity: 0; transform: translateY(24px);
@@ -692,6 +694,7 @@
     var nav = document.getElementById('nav');
     var showcaseBg = document.getElementById('showcaseBg');
     var showcase = document.querySelector('.showcase');
+    var showcaseOverlay = document.querySelector('.showcase-overlay');
 
     var ticking = false;
     window.addEventListener('scroll', function() {
@@ -706,6 +709,9 @@
               var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
               var shift = (progress - 0.5) * 200;
               showcaseBg.style.transform = 'translateY(' + shift + 'px)';
+              if (showcaseOverlay) {
+                showcaseOverlay.style.opacity = Math.min(progress, 1);
+              }
             }
           }
           ticking = false;
