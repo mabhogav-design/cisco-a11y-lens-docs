@@ -196,9 +196,10 @@
     }
     .showcase-bg {
       position: absolute;
-      top: -80px; left: 0; right: 0; bottom: -80px;
+      top: -200px; left: 0; right: 0; bottom: -200px;
       background: url('product-shot-2x.jpg') center center / cover no-repeat;
       will-change: transform;
+      transform: translateY(0);
     }
     .showcase-vignette { display: none; }
     .showcase-text {
@@ -628,12 +629,12 @@
           var y = window.scrollY;
           nav.classList.toggle('scrolled', y > 10);
 
-          if (showcase) {
+          if (showcase && showcaseBg) {
             var rect = showcase.getBoundingClientRect();
             if (rect.bottom > 0 && rect.top < window.innerHeight) {
               var progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-              var shift = (progress - 0.5) * 60;
-              showcaseBg.style.transform = 'scale(1.08) translateY(' + shift + 'px)';
+              var shift = (progress - 0.5) * 200;
+              showcaseBg.style.transform = 'translateY(' + shift + 'px)';
             }
           }
           ticking = false;
