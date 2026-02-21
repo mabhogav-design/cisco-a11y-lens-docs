@@ -8,8 +8,46 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@momentum-ui/icons@8.33.0/css/momentum-ui-icons.min.css" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'MomentumFontIcon';
+      src: url('https://cdn.jsdelivr.net/npm/@momentum-design/icons@0.47.1/dist/fonts/MomentumFontIcon.woff2') format('woff2'),
+           url('https://cdn.jsdelivr.net/npm/@momentum-design/icons@0.47.1/dist/fonts/MomentumFontIcon.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    .mdi {
+      font-family: 'MomentumFontIcon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .mdi-accessibility-bold::before { content: '\f101'; }
+    .mdi-check-circle-bold::before { content: '\f361'; }
+    .mdi-warning-bold::before { content: '\fcdf'; }
+    .mdi-analysis-bold::before { content: '\f17f'; }
+    .mdi-alert-bold::before { content: '\f152'; }
+    .mdi-browser-bold::before { content: '\f284'; }
+    .mdi-arrow-right-bold::before { content: '\f1d5'; }
+    .mdi-shield-bold::before { content: '\fade'; }
+    .mdi-bot-bold::before { content: '\f25f'; }
+    .mdi-endpoint-bold::before { content: '\f508'; }
+    .mdi-tools-bold::before { content: '\fc0c'; }
+    .mdi-secure-lock-bold::before { content: '\fa7c'; }
+    .mdi-cloud-bold::before { content: '\f37f'; }
+    .mdi-certified-bold::before { content: '\f348'; }
+    .mdi-secure-circle-bold::before { content: '\fa78'; }
+    .mdi-colour-palette-bold::before { content: '\f3b7'; }
+    .mdi-display-bold::before { content: '\f46c'; }
+    .mdi-edit-bold::before { content: '\f4c6'; }
+    .mdi-video-layout-equal-dual-bold::before { content: '\fc76'; }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -55,7 +93,7 @@
     }
 
     /* Momentum icon overrides for our layout */
-    .icon { line-height: 1; }
+    .mdi { line-height: 1; }
 
     /* =========================================
        NAV
@@ -76,7 +114,7 @@
       display: flex; align-items: center; gap: 10px;
       text-decoration: none; color: var(--gray-900);
     }
-    .nav-brand .icon { color: var(--webex-blue); font-size: 22px; }
+    .nav-brand .mdi { color: var(--webex-blue); font-size: 22px; }
     .nav-brand span {
       font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
     }
@@ -156,12 +194,12 @@
       letter-spacing: 0.05em; text-transform: uppercase;
       margin-bottom: 36px;
     }
-    .hero-badge .icon { font-size: 14px; color: var(--green); }
+    .hero-badge .mdi { font-size: 14px; color: var(--green); }
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
-    .hero-badge .icon { animation: pulse 2s ease-in-out infinite; }
+    .hero-badge .mdi { animation: pulse 2s ease-in-out infinite; }
     .hero h1 {
       font-size: 52px; font-weight: 700; line-height: 1.1;
       letter-spacing: -1.5px; color: var(--white); margin-bottom: 20px;
@@ -267,7 +305,7 @@
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 24px;
     }
-    .stat-icon .icon { font-size: 20px; }
+    .stat-icon .mdi { font-size: 20px; }
     .stat-icon.red { background: rgba(212, 55, 28, 0.12); color: #F06449; }
     .stat-icon.orange { background: rgba(194, 81, 0, 0.12); color: #F2994A; }
     .stat-icon.blue { background: rgba(0, 122, 163, 0.12); color: var(--webex-teal); }
@@ -308,7 +346,7 @@
       display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 20px;
     }
-    .flow-step-icon .icon { font-size: 24px; }
+    .flow-step-icon .mdi { font-size: 24px; }
     .flow-step-icon.figma { background: var(--webex-blue-light); color: var(--webex-blue); }
     .flow-step-icon.proxy { background: var(--gray-100); color: var(--gray-700); }
     .flow-step-icon.ai { background: var(--green-light); color: var(--green); }
@@ -321,7 +359,7 @@
       display: flex; align-items: center; padding: 0 4px;
       color: var(--gray-300);
     }
-    .flow-arrow .icon { font-size: 20px; }
+    .flow-arrow .mdi { font-size: 20px; }
     .flow-note {
       text-align: center; margin-top: 32px;
       font-size: 13px; font-weight: 400; color: var(--gray-500);
@@ -344,7 +382,7 @@
       border-color: var(--webex-blue);
       box-shadow: 0 4px 16px rgba(0, 122, 163, 0.08);
     }
-    .tech-item .tech-icon {
+    .tech-item .tech-icon.mdi {
       font-size: 24px; color: var(--webex-blue);
       margin-bottom: 12px; display: block;
     }
@@ -400,7 +438,7 @@
       border-color: var(--webex-blue);
       box-shadow: 0 2px 12px rgba(0, 122, 163, 0.08);
     }
-    .next-list .icon { font-size: 16px; color: var(--webex-teal); }
+    .next-list .mdi { font-size: 16px; color: var(--webex-teal); }
 
     /* =========================================
        FOOTER
@@ -450,7 +488,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="#" class="nav-brand">
-      <i class="icon icon-accessibility_24"></i>
+      <i class="mdi mdi-accessibility-bold"></i>
       <span>Cisco A11y Lens</span>
     </a>
     <div class="nav-links">
@@ -465,7 +503,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-badge">
-        <i class="icon icon-check-circle_20"></i>
+        <i class="mdi mdi-check-circle-bold"></i>
         MCP Connector Approved
       </div>
       <h1>Accessibility<br><em>Intelligence</em><br>for Design</h1>
@@ -503,17 +541,17 @@
       </div>
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-icon red"><i class="icon icon-warning_24"></i></div>
+          <div class="stat-icon red"><i class="mdi mdi-warning-bold"></i></div>
           <div class="stat-number">$150K&ndash;$300K</div>
           <div class="stat-desc">Average accessibility lawsuit settlement in the United States</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon orange"><i class="icon icon-analysis_24"></i></div>
+          <div class="stat-icon orange"><i class="mdi mdi-analysis-bold"></i></div>
           <div class="stat-number">4,605</div>
           <div class="stat-desc">ADA digital accessibility lawsuits filed in US federal courts in 2023</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon blue"><i class="icon icon-alert_24"></i></div>
+          <div class="stat-icon blue"><i class="mdi mdi-alert-bold"></i></div>
           <div class="stat-number">10&times;</div>
           <div class="stat-desc">The cost multiplier of retrofitting accessibility versus designing it right</div>
         </div>
@@ -533,19 +571,19 @@
       </div>
       <div class="flow-row">
         <div class="flow-step">
-          <div class="flow-step-icon figma"><i class="icon icon-browser_24"></i></div>
+          <div class="flow-step-icon figma"><i class="mdi mdi-browser-bold"></i></div>
           <h3>Figma Plugin</h3>
           <p>Designer selects a UI frame and describes what the user is trying to accomplish</p>
         </div>
-        <div class="flow-arrow"><i class="icon icon-arrow-right_20"></i></div>
+        <div class="flow-arrow"><i class="mdi mdi-arrow-right-bold"></i></div>
         <div class="flow-step">
-          <div class="flow-step-icon proxy"><i class="icon icon-shield_24"></i></div>
+          <div class="flow-step-icon proxy"><i class="mdi mdi-shield-bold"></i></div>
           <h3>MCP Connector</h3>
           <p>Request routed through an authenticated, JWT-secured proxy server</p>
         </div>
-        <div class="flow-arrow"><i class="icon icon-arrow-right_20"></i></div>
+        <div class="flow-arrow"><i class="mdi mdi-arrow-right-bold"></i></div>
         <div class="flow-step">
-          <div class="flow-step-icon ai"><i class="icon icon-bot_24"></i></div>
+          <div class="flow-step-icon ai"><i class="mdi mdi-bot-bold"></i></div>
           <h3>Circuit AI</h3>
           <p>LLM analyzes the frame and generates WCAG 2.1 AA accessibility annotations</p>
         </div>
@@ -567,49 +605,49 @@
       <div class="tech-grid">
         <div class="tech-item">
           <span class="tech-tip">How the plugin talks to the AI server &mdash; a secure channel for sending design data back and forth</span>
-          <i class="icon icon-endpoint_24 tech-icon"></i>
+          <i class="mdi mdi-endpoint-bold tech-icon"></i>
           <div class="label">Protocol</div>
           <div class="value">MCP over Streamable HTTP</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">The engine running behind the scenes that processes your design frames and returns suggestions</span>
-          <i class="icon icon-tools_24 tech-icon"></i>
+          <i class="mdi mdi-tools-bold tech-icon"></i>
           <div class="label">Runtime</div>
           <div class="value">FastMCP (Python)</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">Digital ID badges that verify every request is legitimate &mdash; no unauthorized access</span>
-          <i class="icon icon-lock_24 tech-icon"></i>
+          <i class="mdi mdi-secure-lock-bold tech-icon"></i>
           <div class="label">Auth</div>
           <div class="value">JWT / JWKS (RS256)</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">Cisco's own AI that understands accessibility rules and generates smart recommendations</span>
-          <i class="icon icon-bot_24 tech-icon"></i>
+          <i class="mdi mdi-bot-bold tech-icon"></i>
           <div class="label">AI Engine</div>
           <div class="value">Circuit LLM</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">The panel inside Figma where you select frames, set intent, and review results</span>
-          <i class="icon icon-browser_24 tech-icon"></i>
+          <i class="mdi mdi-browser-bold tech-icon"></i>
           <div class="label">Frontend</div>
           <div class="value">Figma Plugin API</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">The shared language the plugin and server use to understand each other's messages</span>
-          <i class="icon icon-cloud_24 tech-icon"></i>
+          <i class="mdi mdi-cloud-bold tech-icon"></i>
           <div class="label">Transport</div>
           <div class="value">JSON-RPC 2.0</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">The global rulebook for making digital products usable by everyone, including people with disabilities</span>
-          <i class="icon icon-certified_24 tech-icon"></i>
+          <i class="mdi mdi-certified-bold tech-icon"></i>
           <div class="label">Standard</div>
           <div class="value">WCAG 2.1 AA</div>
         </div>
         <div class="tech-item">
           <span class="tech-tip">Your design data stays within Cisco's secure network &mdash; nothing leaves the building</span>
-          <i class="icon icon-secure_24 tech-icon"></i>
+          <i class="mdi mdi-secure-circle-bold tech-icon"></i>
           <div class="label">Data Class</div>
           <div class="value">Cisco Confidential</div>
         </div>
@@ -628,11 +666,11 @@
         </p>
       </div>
       <ul class="next-list">
-        <li><i class="icon icon-pen_24"></i>Color contrast analysis</li>
-        <li><i class="icon icon-screen-toggle_24"></i>Screen reader flow preview</li>
-        <li><i class="icon icon-edit_24"></i>Edit suggestions before applying</li>
-        <li><i class="icon icon-layout-equal-dual_24"></i>Batch analysis across frames</li>
-        <li><i class="icon icon-tools_24"></i>Momentum design system integration</li>
+        <li><i class="mdi mdi-colour-palette-bold"></i>Color contrast analysis</li>
+        <li><i class="mdi mdi-display-bold"></i>Screen reader flow preview</li>
+        <li><i class="mdi mdi-edit-bold"></i>Edit suggestions before applying</li>
+        <li><i class="mdi mdi-video-layout-equal-dual-bold"></i>Batch analysis across frames</li>
+        <li><i class="mdi mdi-tools-bold"></i>Momentum design system integration</li>
       </ul>
     </div>
   </section>
